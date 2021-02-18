@@ -1,0 +1,46 @@
+@import "../scss/index.scss";
+
+.layout-admin{
+  transition: margin-left 0.2s;
+  display: grid;
+  height: 100vh;
+  grid-template-areas:
+  "header"
+  "content"
+  "footer";
+  grid-template-columns: 1fr;
+  grid-template-rows: 76px 1fr 50px;
+
+  &__sidebar {
+    background-color: gray;
+    grid-area: sidebar;
+    
+  }
+
+  &__header {
+    background-color: black;
+    grid-area: header;
+    //   position: fixed;
+    //   top: 0;
+    //   left: 0;
+    //   width: 100%;
+    //   display: flex;
+    //   padding: 0;
+    //   height: 65px;
+    //   background-color: gray;
+  }
+
+  &__content {
+    background-color: rgb(66, 66, 204);
+    grid-area: content;
+    //   min-height: calc(100vh - 176px); // resto tamaño del header
+    //   padding: 90px 25px 25px 25px;
+    //   background-color: yellow;
+  }
+
+  &__footer {
+    background-color: rgb(202, 202, 130);
+    grid-area: footer;
+    //   padding: 20px;
+  }
+}

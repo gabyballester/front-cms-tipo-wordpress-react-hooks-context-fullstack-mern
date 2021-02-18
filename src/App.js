@@ -1,12 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import routes from './config/routes';
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <h1>Web personal - cliente</h1>
-    </div>
+    <Router>
+      <Switch>
+        {routes.map((route, index) => (
+          <RouteWithSubRoutes key={index} {...route} />
+        ))}
+      </Switch>
+    </Router>
   );
 }
 
-export default App;
+function RouteWithSubRoutes(route) {
+  return (
+    <Route
+      path={route.path}
+      exact={route.exact}
+      render={props => <route.component routes={route.routes} {...props} />}
+    />
+  );
+}
