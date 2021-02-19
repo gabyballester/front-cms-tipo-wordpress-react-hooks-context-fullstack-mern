@@ -4,29 +4,26 @@ import { SidebarData } from './SidebarData';
 
 export default function MenuSider() {
 
-
+  const pathName = window.location.pathname;
 
   return (
-    <nav className{sidebar ? 'nav-menu active': 'nav-menu'}>
-    <ul className="navbar">
+    <div className="sider">
+
       {SidebarData.map((option, index) => (
-        <li className="nav-menu-item">
-         <Link
-         key={index}
-           to={option.path}
-           className="menu-bars"
+        <Link
+          key={index}
+          to={option.path}
+          className={option.path == pathName ? "row active" : "row"}
         >
-           <span className="sider__icon">
-             {option.icon}
-             </span>
-           <span className="sider__text">
-             {option.name}
-             </span>
-         </Link>
-         </li>
+          {option.icon}
+          <span className="text">
+            {option.name}
+          </span>
+        </Link>
       ))}
     </div>
-    </nav>
   );
 }
+
+
 

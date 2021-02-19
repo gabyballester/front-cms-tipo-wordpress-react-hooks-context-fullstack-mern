@@ -1,18 +1,27 @@
-import './layoutStyles.scss';
-import { Route, Switch } from 'react-router-dom';
-import MenuTop from '../components/Admin/MenuTop';
-import MenuSider from '../components/Admin/MenuSider';
+import { useContext } from "react";
+import "./layoutStyles.scss";
+import { Route, Switch } from "react-router-dom";
+import MenuTop from "../components/Admin/MenuTop";
+import MenuSider from "../components/Admin/MenuSider";
+import SidebarContext from "../context/sidebar/sidebarContext";
 
 export default function LayoutAdmin(props) {
   const { routes } = props;
-
+  //obtengo el estado del estate del menu
+  const sidebarContext = useContext(SidebarContext);
+  const { showSidebar } = sidebarContext;
+  
   return (
-    <div className="layout-admin">
-      
-      <div className="layout-admin__sidebar"><MenuSider/></div>
+    // <div className={showSidebar ? "layout-admin": "layout-admin-closed"}>
+    <div className={showSidebar ? "layout-admin": "layout-admin-closed"}>
+      {showSidebar ? (
+        <div className="layout-admin__sidebar">
+          <MenuSider />
+        </div>
+      ) : null}
 
       <div className="layout-admin__header">
-        <MenuTop/>
+        <MenuTop />
       </div>
       <div className="layout-admin__content">
         <LoadRoutes routes={routes} />
@@ -34,5 +43,5 @@ function LoadRoutes({ routes }) {
         />
       ))}
     </Switch>
-  )
+  );
 }
