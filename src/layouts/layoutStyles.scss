@@ -5,26 +5,24 @@
   display: grid;
   height: 100vh;
   grid-template-areas:
-  "header"
-  "content"
-  "footer";
-  grid-template-columns: 1fr;
+  "header header"
+  "sidebar content"
+  "sidebar footer";
+  grid-template-columns: 200px 1fr;
   grid-template-rows: 76px 1fr 50px;
 
   &__sidebar {
-    background-color: gray;
     grid-area: sidebar;
+    background-color: black;
     
   }
 
   &__header {
     background-color: black;
     grid-area: header;
-    //   position: fixed;
-    //   top: 0;
-    //   left: 0;
-    //   width: 100%;
-    //   display: flex;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     //   padding: 0;
     //   height: 65px;
     //   background-color: gray;

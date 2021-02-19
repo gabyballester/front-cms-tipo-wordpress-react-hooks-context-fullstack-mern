@@ -1,6 +1,7 @@
 import './layoutStyles.scss';
 import { Route, Switch } from 'react-router-dom';
-import MenuTop from '../components/Admin/MenuTop'
+import MenuTop from '../components/Admin/MenuTop';
+import MenuSider from '../components/Admin/MenuSider';
 
 export default function LayoutAdmin(props) {
   const { routes } = props;
@@ -8,7 +9,7 @@ export default function LayoutAdmin(props) {
   return (
     <div className="layout-admin">
       
-      {/* <div className="layout-admin__sidebar">Admin Sidebar</div> */}
+      <div className="layout-admin__sidebar"><MenuSider/></div>
 
       <div className="layout-admin__header">
         <MenuTop/>

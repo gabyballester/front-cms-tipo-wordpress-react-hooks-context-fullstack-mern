@@ -1,1 +1,45 @@
 @import "../../../scss/index.scss";
+
+.menu-top{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  button{
+    background-color: transparent;
+    border: none;
+    color: $font-light;
+    padding: 0;
+    
+    &:hover {
+      color: $primary-color;
+    }
+    &:focus,
+    &:active {
+      color: $font-light;
+    }
+
+    .MuiSvgIcon-root{
+        font-size: 1.8em;
+    }
+  }
+  
+  &__left{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    &-logo {
+      width: 260px;
+      padding: 0 10px;
+    }
+  }
+
+  &__right{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-right: 1rem;
+  }
+}
