@@ -6,13 +6,21 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  background-color: black;
 
   button{
     background-color: transparent;
     border: none;
     color: $font-light;
     padding: 0;
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .MuiSvgIcon-root{
+      margin: 2px ;
+    }
+   
     &:hover {
       color: $primary-color;
     }
@@ -43,3 +51,4 @@
     padding-right: 1rem;
   }
 }
+

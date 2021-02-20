@@ -1,46 +1,42 @@
 @import "../../../scss/index.scss";
 
 .sider {
+  transition: width 0.3s;
   display:flex;
   flex-direction: column;
   align-items: center;
-  max-height: 100%;
-  color: black;
-  width: 100%;
-  padding-top: 3rem;
-  background-color: rgb(34, 34, 34);
+  width: 15%;
+  padding-top: 6rem;
+  background-color: black;
 }
-
 
 .row {
   margin: 0;
   padding:0;
-  margin-bottom: 1rem;
   color: white;
   text-decoration: none;
   display: flex;
   flex-direction: row;
   align-items: center;
-  border-radius: 5px;
-  height: 2.5rem;
-  background-color: rgb(87, 87, 87);
-  width: 70%;
+  height: 2.2rem;
+  width: 100%;
+  overflow: hidden;
 }
 
-.row:hover,
+.row:hover{
+  background-color: blue;
+}
 .active {
-  background-color: blue
+  background-color: blue;
 }
 
-.active {
-  background-color: green
+.MuiSvgIcon-root{
+  font-size: 1rem !important;
+  margin-left: 1.5rem;
 }
 
-.MuiSvgIcon-root {
-  margin-left: 0.5rem;
-}
-
-.text {
-
+.text{
+  transition: color 0.3s;
+  font-size: 0.8rem;
   margin-left: 0.5rem;
 }

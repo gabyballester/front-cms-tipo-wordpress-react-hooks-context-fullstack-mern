@@ -1,0 +1,31 @@
+@import "../scss/index.scss";
+
+.layout {  
+display: flex;
+flex-direction: row;
+
+  .main {
+    transition: width 0.2s;
+    width: 100%;
+    .header {
+      position: fixed;
+      top:0;
+      left:0;
+      width: 100%;
+      display: flex;
+      padding: 0;
+      height: 65px;
+    }
+
+    .content{
+      min-height: calc(100vh - 180px);
+      padding: 90px 25px 25px 25px
+    }
+
+    .footer {
+      background-color: green;
+      padding: 20px;
+    }
+  }
+
+}

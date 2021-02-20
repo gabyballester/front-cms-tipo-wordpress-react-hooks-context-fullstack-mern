@@ -1,10 +1,10 @@
 import * as Icons from "@material-ui/icons";
 
-export const SidebarData = [
+export const MenuSiderData = [
     {
         name: 'Home',
         path: '/admin',
-        icon: <Icons.Home/>,
+        icon: <Icons.HomeOutlined/>,
         // iconClosed: "icon-closed",
         // cNameClosed: 'nav-text nav-text-closed'
     },
