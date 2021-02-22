@@ -3,6 +3,7 @@ import * as Icons from "@material-ui/icons";
 import { minLengthValidation, emailValidation } from '../../../services/formValidation';
 import { notification } from 'antd';
 import 'antd/dist/antd.css';
+import { signUpApi } from "../../../api/user";
 
 import './RegisterForm.scss';
 
@@ -77,9 +78,17 @@ export default function RegisterForm() {
                     message: "Las contraseñas tienen que ser iguales"
                 })
             } else {
-                notification.success({
-                    message: "Cuenta creada"
-                })
+                 const result = await signUpApi(inputs);
+                // if (!result.ok) {
+                //     notification["error"]({
+                //         message: result.message
+                //     });
+                // } else {
+                //     notification["success"]({
+                //         message: result.message
+                //     });
+                //     // resetForm();
+                // }
             }
         }
 
