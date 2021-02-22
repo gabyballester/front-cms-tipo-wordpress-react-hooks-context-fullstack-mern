@@ -21,7 +21,7 @@ export default function MenuSider() {
         <Link
           key={index}
           to={option.path}
-          className={option.path == pathName ? "row active" : "row"}
+          className={option.path === pathName ? "row active" : "row"}
         >
           {option.icon}
 
