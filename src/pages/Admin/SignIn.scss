@@ -1,0 +1,92 @@
+@import "../../scss/variables";
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+.layout {
+  background-image: url('../../assets/img/png/background-v1.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.logo {
+  padding: 60px 20px;
+  width: 50%;
+}
+
+img {
+  width: 100%;
+}
+
+.tab-layout{
+  width: 85vw;
+  background-color: white;
+  height: auto;
+  @media (min-width: $media-breackpoint-up-lg){
+    width:500px;
+  }
+}
+
+.tab-header{
+  display: flex;
+  height: 3rem;
+}
+
+.tab1, .tab2{
+  display: flex;
+  width: 50%;
+  justify-content: center;
+  align-content: center;
+}
+
+.active{
+  color: $primary-color;
+  background-color: white;
+  border-bottom: 2px solid transparent;
+  border-top: 4px solid $primary-color;
+}
+
+.inactive{
+  background-color: $background-grey-light;
+  border-bottom: 2px solid $background-grey-light2;
+  border-top: 4px solid $background-grey;
+}
+
+.tab1.inactive{
+  border-right: 2px solid $background-grey-light2;
+  border-left: 2px solid transparent;
+}
+
+.tab2.inactive{
+  border-right: 2px solid transparent;
+  border-left: 2px solid $background-grey-light2;
+}
+
+.text{
+  display: flex;
+  align-items: center;
+  margin: 0;
+  font-weight: 600;
+}
+
+.tab-content{
+  background-color: white;
+  padding: 0 16px 16px 16px;
+  text-align: center;
+}
+
+.tab-content-hidden{
+  display:none;
+}
+

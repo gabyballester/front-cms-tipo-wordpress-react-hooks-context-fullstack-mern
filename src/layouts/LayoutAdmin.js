@@ -1,23 +1,30 @@
 // import { useContext, useState } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import MenuTop from "../components/Admin/MenuTop";
 import MenuSider from "../components/Admin/MenuSider";
-// import SidebarContext from "../context/sidebar/sidebarContext";
+import AdminSignIn from "../pages/Admin/SignIn";
 
 import "./LayoutAdmin.scss";
 
 export default function LayoutAdmin(props) {
   const { routes } = props;
-  
-//obtengo el estado del estate del menu
-  // const sidebarContext = useContext(SidebarContext);
-  // const { showSidebar } = sidebarContext;
-  
+
+  const user = null;
+
+  if (!user) {
+    return (
+      <>
+        <Route path="/admin/login" component={AdminSignIn} />
+        <Redirect to="/admin/login" />
+      </>
+    );
+  }
+
   return (
     <div className="layout">
-      <MenuSider/>
+      <MenuSider />
       <div className="main">
-        <div className="header"><MenuTop/></div>
+        <div className="header"><MenuTop /></div>
         <div className="content">
           <LoadRoutes routes={routes} />
         </div>
@@ -25,8 +32,8 @@ export default function LayoutAdmin(props) {
       </div>
     </div>
   );
-} 
- 
+}
+
 function LoadRoutes({ routes }) {
   return (
     <Switch>
