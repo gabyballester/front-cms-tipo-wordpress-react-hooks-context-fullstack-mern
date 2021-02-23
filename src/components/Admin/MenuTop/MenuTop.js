@@ -22,7 +22,7 @@ export default function MenuTop(props) {
         </Link>
       </div>
       <div className="menu-top__right">
-        <button onClick={() => console.log("clicado")}>
+        <button onClick={() => console.log("//TODO")}>
           <Icons.PowerSettingsNew />
         </button>
       </div>

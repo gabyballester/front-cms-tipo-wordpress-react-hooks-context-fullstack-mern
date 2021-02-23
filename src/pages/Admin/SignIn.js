@@ -13,7 +13,7 @@ export default function SignIn() {
     <div className="layout">
       <div className="content">
         <h1 className="logo">
-          <img src={Logo} />
+          <img src={Logo} alt="logo"/>
         </h1>
         {/* tab-layout */}
         <div className="tab-layout">

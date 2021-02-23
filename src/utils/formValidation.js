@@ -5,7 +5,6 @@ export function minLengthValidation(inputData, minLength, inputContainer) {
     inputContainer.classList.remove("success", "error");
     return false;
   } else if (value.length >= minLength) {
-    console.log('entra aqui');
     inputContainer.classList.add("success");
     inputContainer.classList.remove("error");
     return true;

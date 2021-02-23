@@ -53,7 +53,6 @@ export default function RegisterForm() {
         } else if (name === "repeatPassword") {
             setFormValid({ ...formValid, [name]: minLengthValidation(e.target, 6, repPassInput.current) });
         } else if (type === "checkbox") {
-            console.log('entra aqui')
             setFormValid({ ...formValid, [name]: e.target.checked });
         }
 
@@ -62,18 +61,19 @@ export default function RegisterForm() {
     const handleSubmit = async e => {
         e.preventDefault();
         const { email, password, repeatPassword, privacyPolicy } = formValid;
-        const emailVal = inputs.email;
-        const passwordVal = inputs.password
-        const repeatPasswordVal = inputs.repeatPassword
-        const privacyPolicyVal = inputs.privacyPolicy
 
-        if (!emailVal || !passwordVal || !repeatPasswordVal || !privacyPolicyVal) {
+        if (!email || !password || !repeatPassword || !privacyPolicy) {
 
             notification.error({
                 message: "Todos los campos son obligatorios"
             })
+
         } else {
-            if (passwordVal != repeatPasswordVal) {
+
+            const passwordVal = inputs.password
+            const repeatPasswordVal = inputs.repeatPassword
+
+            if (passwordVal !== repeatPasswordVal) {
                 notification.error({
                     message: "Las contraseñas tienen que ser iguales"
                 })
@@ -95,8 +95,6 @@ export default function RegisterForm() {
     };
 
     const resetForm = () => {
-        const inputs = document.getElementsByTagName("input");
-
         emailInput.current.classList.remove("success", "error");
         passInput.current.classList.remove("success", "error");
         repPassInput.current.classList.remove("success", "error");

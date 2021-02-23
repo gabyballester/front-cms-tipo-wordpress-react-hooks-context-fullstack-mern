@@ -24,6 +24,8 @@ export function signUpApi(data) {
 
 export function signInApi(data) {
     const url = `${basePath}/${apiVersion}/sign-in`;
+    console.log(data);
+    console.log(url);
     const params = {
         method: "POST",
         body: JSON.stringify(data),
@@ -37,12 +39,13 @@ export function signInApi(data) {
             return response.json();
         })
         .then(result => {
-            if (result.user) {
-                return { ok: true, message: "Usuario creado correctamente" };
-            }
-            return { ok: false, message: result.message };
+            return result;
+            //         if (result.user) {
+            //             return { ok: true, message: "Usuario creado correctamente" };
+            //         }
+            //         return { ok: false, message: result.message };
         })
         .catch(err => {
-            return { ok: false, message: err.message };
+            return err.message;
         });
 }
