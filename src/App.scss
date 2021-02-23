@@ -2,10 +2,10 @@
 
 .success { 
   border: 1px solid $success !important;
-  background-color: $background-success;
+  background-color: $background-success !important;
 }
 
 .error{
   border: 2px solid $error !important; 
-  background-color: $background-error;
+  background-color: $background-error !important;
 }

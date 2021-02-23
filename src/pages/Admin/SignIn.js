@@ -1,11 +1,13 @@
 import { useState } from "react";
 import Logo from "../../assets/img/png/logo.png";
 import RegisterForm from '../../components/Admin/RegisterForm';
+import LoginForm from '../../components/Admin/LoginForm';
+
 
 import "./SignIn.scss";
 
 export default function SignIn() {
-  const [tab, setTab] = useState(false);
+  const [tab, setTab] = useState(true);
 
   return (
     <div className="layout">
@@ -33,7 +35,7 @@ export default function SignIn() {
             <div
               className={tab ? "tab-content" : "tab-content-hidden"}
             >
-              <p>Texto tab1</p>
+              <LoginForm/>
             </div>
             <div className={!tab ? "tab-content" : "tab-content-hidden"}>
             <RegisterForm/>

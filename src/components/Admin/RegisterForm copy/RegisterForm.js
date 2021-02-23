@@ -117,7 +117,7 @@ export default function RegisterForm() {
     };
 
     return (
-        <form className="container-form" onSubmit={handleSubmit} onChange={handleChange}>
+        <form className="register-form" onSubmit={handleSubmit} onChange={handleChange}>
             {/* email input */}
             <div className="input-container" ref={emailInput}>
                 <Icons.MailOutline />

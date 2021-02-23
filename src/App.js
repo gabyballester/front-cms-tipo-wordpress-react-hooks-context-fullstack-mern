@@ -2,6 +2,7 @@ import './App.scss';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import routes from './config/routes';
 import SidebarState from './context/sidebar/sidebarState';
+import 'antd/dist/antd.css';
 
 export default function App() {
   return (
