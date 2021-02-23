@@ -11,7 +11,7 @@ export function getAccessTokenApi() {
   }
 
   // si ha expirado devuelvo null, en caso contario devuelvo accessToken
-  return willExpireToken(accessToken) ? null : accessToken;
+  return expirationCheck(accessToken) ? null : accessToken;
 
   return accessToken;
 }
@@ -23,11 +23,11 @@ export function getRefreshTokenApi() {
     return null;
   }
   // si ha caducado devuelve null, de lo contrario, refreshToken
-  return willExpireToken(refreshToken) ? null : refreshToken;
+  return expirationCheck(refreshToken) ? null : refreshToken;
 }
 
 // devuelve true si ha expirado y false si no
-function willExpireToken(token) {
+function expirationCheck(token) {
   const seconds = 60;
   const metaToken = jwtDecode(token);
   const { exp } = metaToken;
