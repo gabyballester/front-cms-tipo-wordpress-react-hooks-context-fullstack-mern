@@ -48,26 +48,26 @@ export default function LoginForm() {
       onChange={handleChange}
     >
       {/* email input */}
-      <div className="input-container">
+      <div className="input-container-form ">
         <Icons.MailOutline />
         <input
-          className="data-input"
+          className="data-input-form"
           name="email"
           type="email"
           placeholder="Correo electrónico"
         />
       </div>
       {/* password input */}
-      <div className="input-container">
+      <div className="input-container-form ">
         <Icons.LockOutlined />
         <input
-          className="data-input"
+          className="data-input-form"
           name="password"
           type="password"
           placeholder="Contraseña"
         />
       </div>
-      <button type="submit">Iniciar sesión</button>
+      <button className="button-form" type="submit">Iniciar sesión</button>
     </form>
   );
 }

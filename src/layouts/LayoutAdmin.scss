@@ -1,13 +1,13 @@
 @import "../scss/index.scss";
 
-.layout {  
+.layout-admin {  
 display: flex;
 flex-direction: row;
 
-  .main {
+  .layout-admin-main {
     transition: width 0.2s;
     width: 100%;
-    .header {
+    .main-header {
       position: fixed;
       top:0;
       left:0;
@@ -17,12 +17,12 @@ flex-direction: row;
       height: 65px;
     }
 
-    .content{
-      min-height: calc(100vh - 180px);
-      padding: 90px 25px 25px 25px
+    .main-content{
+      min-height: calc(100vh - 62px);
+      padding: 65px 0px 0px 0px
     }
 
-    .footer {
+    .main-footer {
       background-color: green;
       padding: 20px;
     }

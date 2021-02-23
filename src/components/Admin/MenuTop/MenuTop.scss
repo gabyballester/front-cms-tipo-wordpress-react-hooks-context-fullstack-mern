@@ -1,6 +1,6 @@
 @import "../../../scss/index.scss";
 
-.menu-top{
+.menu-top {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -8,7 +8,25 @@
   width: 100%;
   background-color: black;
 
-  button{
+  .menu-top-left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    
+  .menu-top-left-link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .menu-top-left-logo {
+      width: 260px;
+      padding: 0 10px;
+    }
+
+  }
+
+  .menu-top-left-button {
     background-color: transparent;
     border: none;
     color: $font-light;
@@ -17,38 +35,52 @@
     justify-content: center;
     align-items: center;
 
-    .MuiSvgIcon-root{
-      margin: 2px ;
+    svg.MuiSvgIcon-root {
+      margin: 2px;
+      font-size: 1.8em;
     }
-   
-    &:hover {
+  }
+
+    .menu-top-left-button:hover {
       color: $primary-color;
     }
-    &:focus,
-    &:active {
-      color: $font-light;
-    }
 
-    .MuiSvgIcon-root{
-        font-size: 1.8em;
+    .menu-top-left-button:focus,
+    .menu-top-left-button:active {
+      outline: none
     }
-  }
   
-  &__left{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    &-logo {
-      width: 260px;
-      padding: 0 10px;
-    }
   }
 
-  &__right{
+
+  .menu-top-right {
     display: flex;
     flex-direction: row;
     align-items: center;
     padding-right: 1rem;
+
+    .menu-top-right-button {
+      background-color: transparent;
+      border: none;
+      color: $font-light;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      svg.MuiSvgIcon-root {
+        margin: 2px;
+        font-size: 1.8em;
+      }
+    }
+
+    .menu-top-right-button:hover {
+      color: $primary-color;
+    }
+
+    .menu-top-right-button:focus,
+    .menu-top-right-button:active {
+      outline: none
+    }
   }
 }
-

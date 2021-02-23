@@ -10,15 +10,15 @@ export default function SignIn() {
   const [tab, setTab] = useState(true);
 
   return (
-    <div className="layout">
-      <div className="content">
-        <h1 className="logo">
-          <img src={Logo} alt="logo"/>
+    <div className="layout-signin">
+      <div className="content-signin">
+        <h1 className="logo-signin">
+          <img className="logo-signin-img" src={Logo} alt="logo" />
         </h1>
         {/* tab-layout */}
-        <div className="tab-layout">
+        <div className="tab-layout-signin">
           {/* tab-row */}
-          <div className="tab-header">
+          <div className="tab-header-signin">
             {/* tab1 */}
             <div
               className={tab ? "tab1 active" : "tab1 inactive"}
@@ -32,14 +32,14 @@ export default function SignIn() {
             </div>
           </div>
           {/* tab-content*/}
-            <div
-              className={tab ? "tab-content" : "tab-content-hidden"}
-            >
-              <LoginForm/>
-            </div>
-            <div className={!tab ? "tab-content" : "tab-content-hidden"}>
-            <RegisterForm/>
-            </div>
+          <div
+            className={tab ? "tab-content-signin" : "tab-content-signin-hidden"}
+          >
+            <LoginForm />
+          </div>
+          <div className={!tab ? "tab-content-signin" : "tab-content-signin-hidden"}>
+            <RegisterForm />
+          </div>
         </div>
       </div>
     </div>

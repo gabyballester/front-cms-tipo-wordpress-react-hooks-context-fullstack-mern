@@ -13,7 +13,7 @@ export default function MenuSider() {
   const pathName = window.location.pathname;
 
   return (
-    <div className="sider"
+    <div className="menu-sider"
       style={!showSidebar ? { width: "64px" } : null}
     >
 
@@ -21,11 +21,11 @@ export default function MenuSider() {
         <Link
           key={index}
           to={option.path}
-          className={option.path === pathName ? "row active" : "row"}
+          className={option.path === pathName ? "menu-sider-row active" : "menu-sider-row"}
         >
           {option.icon}
 
-          <span className="text"
+          <span className="menu-sider-text"
             style={{color: !showSidebar ?  "transparent"  : null}}
           > {option.name} </span>
 

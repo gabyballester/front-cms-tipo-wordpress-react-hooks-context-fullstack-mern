@@ -3,15 +3,12 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import MenuTop from "../components/Admin/MenuTop";
 import MenuSider from "../components/Admin/MenuSider";
 import AdminSignIn from "../pages/Admin/SignIn";
-
 import "./LayoutAdmin.scss";
 
 export default function LayoutAdmin(props) {
   const { routes } = props;
 
-  const user = null;
-
-
+  const user = true;
   if (!user) {
     return (
       <>
@@ -22,14 +19,14 @@ export default function LayoutAdmin(props) {
   }
 
   return (
-    <div className="layout">
+    <div className="layout-admin">
       <MenuSider />
-      <div className="main">
-        <div className="header"><MenuTop /></div>
-        <div className="content">
+      <div className="layout-admin-main">
+        <div className="main-header"><MenuTop /></div>
+        <div className="main-content">
           <LoadRoutes routes={routes} />
         </div>
-        <div className="footer">Footer</div>
+        <div className="main-footer">Footer</div>
       </div>
     </div>
   );

@@ -1,96 +1,99 @@
 @import "../../scss/variables";
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
-.layout {
+.layout-signin {
   background-image: url('../../assets/img/png/background-v1.jpg');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+  min-height: calc(100vh - 127px);
 
-}
+  .content-signin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px;
 
-.content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  // justify-content: center;
-  min-height: 100vh;
-  width: 100%;
-}
+    .logo-signin {
+      width: 100%;
+      max-width: 400px;
+      margin-bottom: 50px;
 
-.logo {
-  padding: 60px 20px;
-  width: 100%;
-  max-width: 400px;
-}
+      .logo-signin-img {
+        width: 100%;
+      }
+    }
 
-img {
-  width: 100%;
-}
+    .tab-layout-signin {
+      width: 85vw;
+      background-color: white;
+      height: auto;
 
-.tab-layout{
-  width: 85vw;
-  background-color: white;
-  height: auto;
-  @media (min-width: $media-breackpoint-up-lg){
-    width:500px;
+      @media (min-width: $media-breackpoint-up-lg) {
+        width: 500px;
+      }
+
+      .tab-header-signin {
+        display: flex;
+        height: 3rem;
+
+        .tab1,
+        .tab2 {
+          display: flex;
+          width: 50%;
+          justify-content: center;
+          align-content: center;
+          cursor: pointer;
+
+          .text {
+            display: flex;
+            align-items: center;
+            margin: 0;
+            font-weight: 600;
+            font-size: 0em + 20px / $defaultFontSize;
+          }
+        }
+
+        .active {
+          color: $primary-color;
+          background-color: white;
+          border-bottom: 2px solid transparent;
+          border-top: 4px solid $primary-color;
+        }
+
+        .inactive {
+          background-color: $background-grey-light;
+          border-bottom: 2px solid $background-grey-light2;
+          border-top: 4px solid $background-grey;
+        }
+
+        .tab1.inactive {
+          border-right: 2px solid $background-grey-light2;
+          border-left: 2px solid transparent;
+        }
+
+        .tab2.inactive {
+          border-right: 2px solid transparent;
+          border-left: 2px solid $background-grey-light2;
+        }
+
+      }
+
+      .tab-content-signin {
+        background-color: white;
+        padding: 16px 16px 16px 16px;
+        text-align: center;
+      }
+
+      .tab-content-signin-hidden {
+        display: none;
+      }
+    }
   }
-}
 
-.tab-header{
-  display: flex;
-  height: 3rem;
 }
-
-.tab1, .tab2{
-  display: flex;
-  width: 50%;
-  justify-content: center;
-  align-content: center;
-  cursor: pointer;
-}
-
-.active{
-  color: $primary-color;
-  background-color: white;
-  border-bottom: 2px solid transparent;
-  border-top: 4px solid $primary-color;
-}
-
-.inactive{
-  background-color: $background-grey-light;
-  border-bottom: 2px solid $background-grey-light2;
-  border-top: 4px solid $background-grey;
-}
-
-.tab1.inactive{
-  border-right: 2px solid $background-grey-light2;
-  border-left: 2px solid transparent;
-}
-
-.tab2.inactive{
-  border-right: 2px solid transparent;
-  border-left: 2px solid $background-grey-light2;
-}
-
-.text{
-  display: flex;
-  align-items: center;
-  margin: 0;
-  font-weight: 600;
-  font-size: 0em + 20px / $defaultFontSize;
-}
-
-.tab-content{
-  background-color: white;
-  padding: 16px 16px 16px 16px;
-  text-align: center;
-}
-
-.tab-content-hidden{
-  display:none;
-}
-

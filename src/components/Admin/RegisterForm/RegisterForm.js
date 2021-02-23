@@ -117,9 +117,9 @@ export default function RegisterForm() {
     return (
         <form className="container-form" onSubmit={handleSubmit} onChange={handleChange}>
             {/* email input */}
-            <div className="input-container" ref={emailInput}>
+            <div className="input-container-form" ref={emailInput}>
                 <Icons.MailOutline />
-                <input className="data-input"
+                <input className="data-input-form"
                     name="email"
                     type="email"
                     placeholder="Correo electrónico"
@@ -128,9 +128,9 @@ export default function RegisterForm() {
                 />
             </div>
             {/* password input */}
-            <div className="input-container" ref={passInput}>
+            <div className="input-container-form" ref={passInput}>
                 <Icons.LockOutlined />
-                <input className="data-input"
+                <input className="data-input-form"
                     name="password"
                     type="password"
                     placeholder="Contraseña"
@@ -139,9 +139,9 @@ export default function RegisterForm() {
                 />
             </div>
             {/* password input */}
-            <div id="repeatPassword" className="input-container" ref={repPassInput}>
+            <div id="repeatPassword" className="input-container-form" ref={repPassInput}>
                 <Icons.LockOutlined />
-                <input className="data-input"
+                <input className="data-input-form"
                     name="repeatPassword"
                     type="password"
                     placeholder="Repite contraseña"
@@ -150,7 +150,7 @@ export default function RegisterForm() {
                 />
             </div>
             {/* checkbox container */}
-            <div className="checkbox-container">
+            <div className="checkbox-container-form">
                 <input
                     type="checkbox"
                     name="privacyPolicy"
@@ -161,7 +161,7 @@ export default function RegisterForm() {
 
                 <label className="label-conditions">He leído y acepto la política de privacidad</label>
             </div>
-            <button type="submit">
+            <button className="button-form" type="submit">
                 Crear cuenta
       </button>
         </form>
