@@ -1,0 +1,96 @@
+ @import '../../../../scss/variables';
+
+ .list-users-switch{
+   display: flex;
+   flex-direction: row;
+   justify-content: flex-start;
+   align-items:center;
+   margin-bottom: 20px;
+   span{
+     margin: 0;
+   }
+ }
+
+
+ .list-user-card {
+   background-color: white;
+   margin-bottom: 3px;
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+   flex-wrap: wrap;
+  //  border: 1px solid gray;
+
+   .avatar {
+     padding: 10px;
+    //  border: 1px solid gray;
+
+     .MuiAvatar-root,
+     .MuiAvatar-circle,
+     .MuiAvatar-colorDefault {
+       height: 2.5rem;
+       width: 2.5rem;
+     }
+   }
+
+   .userInfo {
+     height: 100%;
+    //  border: 1px solid gray;
+     display: flex;
+     flex-direction: column;
+     flex-grow: 3;
+     justify-content: center;
+     padding: 10px 10px;
+
+     p {
+       padding: 0;
+       margin: 0;
+     }
+   }
+
+   .actions {
+     display: flex;
+     padding: 10px 10px;
+
+     .button {
+       border-radius: 5px;
+       color: white;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       cursor: pointer;
+       padding: 1px 9px;
+       margin-right: 8px;
+
+       .MuiSvgIcon-root {
+         width: 15px;
+       }
+     }
+
+     .button-edit, .button-activate {
+       background-color: $menu-color-item;
+     }
+     .button-edit, .button-activate {
+      background-color: $menu-color-item-hover;
+    }
+
+     .button-disable {
+       background-color: $menu-color-item-warning;
+     }
+
+     .button-disable:hover {
+       background-color: $menu-color-item-warning-hover;
+     }
+     .button-delete {
+      background-color: $menu-color-item-danger;
+    }
+
+    .button-delete:hover {
+      background-color: $menu-color-item-danger-hover;
+    }
+
+    
+
+   }
+ }

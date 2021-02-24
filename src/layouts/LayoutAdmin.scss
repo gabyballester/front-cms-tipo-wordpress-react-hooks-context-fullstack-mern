@@ -5,6 +5,7 @@ display: flex;
 flex-direction: row;
 
   .layout-admin-main {
+    background-color: rgb(243, 243, 243);
     transition: width 0.2s;
     width: 100%;
     .main-header {
@@ -19,11 +20,10 @@ flex-direction: row;
 
     .main-content{
       min-height: calc(100vh - 62px);
-      padding: 90px 25px 25px 25px
+      padding: 79px 15px 15px 20px;
     }
 
     .main-footer {
-      background-color: green;
       padding: 20px;
     }
   }

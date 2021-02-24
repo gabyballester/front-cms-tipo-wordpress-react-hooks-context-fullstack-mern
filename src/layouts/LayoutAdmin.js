@@ -27,7 +27,7 @@ export default function LayoutAdmin(props) {
           <div className="main-content">
             <LoadRoutes routes={routes} />
           </div>
-          <div className="main-footer">Footer</div>
+          <div className="main-footer">Gabriel Ballester</div>
         </div>
       </div>
     );

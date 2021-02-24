@@ -89,7 +89,7 @@ export function getUsersActiveApi(token, status) {
             
             return response.json();
         })
-        .then(result => {
+        .then((result) => {
             return result;
         })
         .catch(err => {
