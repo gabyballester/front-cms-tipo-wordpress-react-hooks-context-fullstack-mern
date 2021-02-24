@@ -87,32 +87,39 @@ export default function RegisterForm() {
                     notification.success({
                         message: result.message
                     });
-                    resetForm();
+                    redirectToLogin();
+                    // resetForm();
                 }
             }
         }
 
     };
 
-    const resetForm = () => {
-        emailInput.current.classList.remove("success", "error");
-        passInput.current.classList.remove("success", "error");
-        repPassInput.current.classList.remove("success", "error");
+    function redirectToLogin() {
+        setTimeout(function(){ 
+            window.location.href = "/admin";
+         }, 3000);
+      }
 
-        setInputs({
-            email: "",
-            password: "",
-            repeatPassword: "",
-            privacyPolicy: false
-        });
+    // const resetForm = () => {
+    //     emailInput.current.classList.remove("success", "error");
+    //     passInput.current.classList.remove("success", "error");
+    //     repPassInput.current.classList.remove("success", "error");
 
-        setFormValid({
-            email: false,
-            password: false,
-            repeatPassword: false,
-            privacyPolicy: false
-        });
-    };
+    //     setInputs({
+    //         email: "",
+    //         password: "",
+    //         repeatPassword: "",
+    //         privacyPolicy: false
+    //     });
+
+    //     setFormValid({
+    //         email: false,
+    //         password: false,
+    //         repeatPassword: false,
+    //         privacyPolicy: false
+    //     });
+    // };
 
     return (
         <form className="container-form" onSubmit={handleSubmit} onChange={handleChange}>
