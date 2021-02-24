@@ -29,11 +29,11 @@
   }
 
   .menu-sider-row:hover {
-    background-color: blue;
+    background-color: $menu-color-item-hover;
   }
 
   .active {
-    background-color: blue;
+    background-color: $menu-color-item;
   }
 
   svg.MuiSvgIcon-root {

@@ -4,15 +4,10 @@ export const MenuSiderData = [
     {
         name: 'Home',
         path: '/admin',
-        icon: <Icons.HomeOutlined/>,
-        // iconClosed: "icon-closed",
-        // cNameClosed: 'nav-text nav-text-closed'
-    },
+        icon: <Icons.HomeOutlined/>,    },
     {
-        name: 'Menu Web',
-        path: '/admin/menu-web',
-        icon: <Icons.Menu/>,
-        // iconClosed: "icon-closed",
-        // cNameClosed: 'nav-text nav-text-closed'
+        name: 'Usuarios',
+        path: '/admin/users',
+        icon: <Icons.PeopleAltOutlined/>,
     },
 ]

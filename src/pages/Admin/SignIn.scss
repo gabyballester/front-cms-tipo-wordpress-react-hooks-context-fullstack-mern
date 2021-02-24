@@ -11,18 +11,18 @@
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  min-height: calc(100vh - 127px);
 
   .content-signin {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 50px;
+    min-height: 100vh;
+    width: 100%;
 
     .logo-signin {
+      margin-top: 10rem;
       width: 100%;
       max-width: 400px;
-      margin-bottom: 50px;
 
       .logo-signin-img {
         width: 100%;
@@ -34,8 +34,8 @@
       background-color: white;
       height: auto;
 
-      @media (min-width: $media-breackpoint-up-lg) {
-        width: 500px;
+      @media (min-width: $media-breackpoint-up-sm) {
+        width: 400px;
       }
 
       .tab-header-signin {

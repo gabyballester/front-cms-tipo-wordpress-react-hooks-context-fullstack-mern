@@ -1,5 +1,6 @@
 // import { useContext, useState } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 import MenuTop from "../components/Admin/MenuTop";
 import MenuSider from "../components/Admin/MenuSider";
 import AdminSignIn from "../pages/Admin/SignIn";
@@ -7,9 +8,9 @@ import "./LayoutAdmin.scss";
 
 export default function LayoutAdmin(props) {
   const { routes } = props;
+  const { user, isLoading } = useAuth();
 
-  const user = true;
-  if (!user) {
+  if (!user && !isLoading) {
     return (
       <>
         <Route path="/admin/login" component={AdminSignIn} />
@@ -17,19 +18,22 @@ export default function LayoutAdmin(props) {
       </>
     );
   }
-
-  return (
-    <div className="layout-admin">
-      <MenuSider />
-      <div className="layout-admin-main">
-        <div className="main-header"><MenuTop /></div>
-        <div className="main-content">
-          <LoadRoutes routes={routes} />
+  if (user && !isLoading) {
+    return (
+      <div className="layout-admin">
+        <MenuSider />
+        <div className="layout-admin-main">
+          <div className="main-header"><MenuTop /></div>
+          <div className="main-content">
+            <LoadRoutes routes={routes} />
+          </div>
+          <div className="main-footer">Footer</div>
         </div>
-        <div className="main-footer">Footer</div>
       </div>
-    </div>
-  );
+    );
+  }
+
+  return null;
 }
 
 function LoadRoutes({ routes }) {

@@ -1,20 +1,23 @@
 import './App.scss';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import routes from './config/routes';
+import AuthProvider from "./providers/AuthProvider";
 import SidebarState from './context/sidebar/sidebarState';
 import 'antd/dist/antd.css';
 
 export default function App() {
   return (
-    <SidebarState>
-      <Router>
-        <Switch>
-          {routes.map((route, index) => (
-            <RouteWithSubRoutes key={index} {...route} />
-          ))}
-        </Switch>
-      </Router>
-    </SidebarState>
+    <AuthProvider>
+      <SidebarState>
+        <Router>
+          <Switch>
+            {routes.map((route, index) => (
+              <RouteWithSubRoutes key={index} {...route} />
+            ))}
+          </Switch>
+        </Router>
+      </SidebarState>
+    </AuthProvider>
   );
 }
 
