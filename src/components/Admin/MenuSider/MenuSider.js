@@ -1,16 +1,16 @@
 import { useContext } from "react";
 import "./MenuSider.scss";
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { MenuSiderData } from './MenuSiderData';
 import SidebarContext from "../../../context/sidebar/sidebarContext";
 
-export default function MenuSider() {
-
+function MenuSider(props) {
+  const {location} = props;
   // obtengo el estado del estate del menu
   const sidebarContext = useContext(SidebarContext);
   const { showSidebar } = sidebarContext;
 
-  const pathName = window.location.pathname;
+  const pathName = location.pathname;
 
   return (
     <div className="menu-sider"
@@ -36,5 +36,6 @@ export default function MenuSider() {
   );
 }
 
+export default withRouter(MenuSider);
 
 
