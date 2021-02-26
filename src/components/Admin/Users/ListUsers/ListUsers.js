@@ -1,18 +1,48 @@
 import { Fragment, useEffect, useState } from "react";
 import NoAvatar from "../../../../assets/img/png/no-avatar.png";
-import { notification } from "antd";
+import { notification, Modal as ModalAntd } from "antd";
 import SwitchButton from "../../common/SwitchButton";
 import Avatar from "@material-ui/core/Avatar";
 import * as Icon from "@material-ui/icons";
 import Modal from "../../../Modal";
 import EditUserForm from "../EditUserForm";
-import { getAvatarApi, activateUserApi } from "../../../../api/user";
+import { getAvatarApi, activateUserApi, deleteUserApi } from "../../../../api/user";
 import { getAccessTokenApi } from "../../../../api/auth";
 
 import "./ListUsers.scss";
 
+const { confirm } = ModalAntd;
+
+const showDeleteConfirm = (props) => {
+    const {user, setReloadUsers} = props;
+    const accesToken = getAccessTokenApi();
+
+    confirm({
+        title: "Eliminando usuario",
+        content: `¿Estas seguro que quieres eliminar a ${user.email}?`,
+        okText: "Eliminar",
+        okType: "danger",
+        cancelText: "Cancelar",
+        onOk() {
+            deleteUserApi(accesToken, user._id)
+                .then(response => {
+                    notification["success"]({
+                        message: response
+                    });
+                    setReloadUsers(true);
+                })
+                .catch(err => {
+                    notification["error"]({
+                        message: err
+                    });
+                });
+        }
+    });
+};
+
+
 export default function ListUsers(props) {
-    const { usersActive, usersInactive, setReloadUsers } = props;
+    const { usersActive, usersInactive, setReloadUsers} = props;
     const [viewUsersActives, setViewUsersActives] = useState(true);
     const [isVisibleModal, setIsVisibleModal] = useState(false);
     const [modalTitle, setModalTitle] = useState("")
@@ -35,9 +65,10 @@ export default function ListUsers(props) {
                     setModalTitle={setModalTitle}
                     setModalContent={setModalContent}
                     setReloadUsers={setReloadUsers}
+                    showDeleteConfirm={showDeleteConfirm}
                 />
             ) : (
-                    <UsersInactive usersInactive={usersInactive} setReloadUsers={setReloadUsers} />
+                    <UsersInactive usersInactive={usersInactive} setReloadUsers={setReloadUsers} showDeleteConfirm={showDeleteConfirm} />
                 )}
             <Modal
                 title={modalTitle}
@@ -50,9 +81,8 @@ export default function ListUsers(props) {
     );
 }
 
-
 function UsersActive(props) {
-    const { usersActive, setIsVisibleModal, setModalTitle, setModalContent, setReloadUsers } = props;
+    const { usersActive, setIsVisibleModal, setModalTitle, setModalContent, setReloadUsers,showDeleteConfirm} = props;
     const usersArray = usersActive;
 
     const editUser = user => {
@@ -70,16 +100,15 @@ function UsersActive(props) {
         <Fragment>
             {usersArray && usersArray.length
                 ? usersArray.map((user, index) => (
-                    <UserActive user={user} key={index} editUser={editUser} setReloadUsers={setReloadUsers} />
+                    <UserActive user={user} key={index} editUser={editUser} setReloadUsers={setReloadUsers} showDeleteConfirm={showDeleteConfirm} />
                 ))
                 : "no hay usuarios"}
         </Fragment>
     );
 }
 
-
 function UserActive(props) {
-    const { user, editUser, setReloadUsers} = props;
+    const { user, editUser, setReloadUsers, showDeleteConfirm } = props;
     const [avatar, setAvatar] = useState(null);
     // si existe el avatar lo actualiza
     useEffect(() => {
@@ -138,7 +167,7 @@ function UserActive(props) {
                 </div>
                 <div
                     className="button button-delete"
-                    onClick={() => console.log("Borrar")}
+                    onClick={()=>showDeleteConfirm({user, setReloadUsers})}
                 >
                     <Icon.DeleteOutlineOutlined />
                 </div>
@@ -148,15 +177,14 @@ function UserActive(props) {
 
 }
 
-
 function UsersInactive(props) {
-    const {usersInactive, setReloadUsers} = props;
-        
+    const { usersInactive, setReloadUsers, showDeleteConfirm } = props;
+
     return (
         <Fragment>
             {usersInactive && usersInactive.length
                 ? usersInactive.map((user, index) => (
-                    <UserInactive user={user} key={index} setReloadUsers={setReloadUsers}/>
+                    <UserInactive user={user} key={index} setReloadUsers={setReloadUsers} showDeleteConfirm={showDeleteConfirm} />
                 ))
                 : "no hay usuarios"}
         </Fragment>
@@ -164,7 +192,7 @@ function UsersInactive(props) {
 }
 
 function UserInactive(props) {
-    const { user, setReloadUsers} = props;
+    const { user, setReloadUsers } = props;
     const [avatar, setAvatar] = useState(null);
 
     // si existe el avatar lo actualiza
@@ -178,7 +206,8 @@ function UserInactive(props) {
         }
     }, [user]);
 
-    const activateUser = () => {
+    const activateUser = (props) => {
+        const {showDeleteConfirm} = props;
         const accesToken = getAccessTokenApi();
 
         activateUserApi(accesToken, user._id, true)
@@ -194,6 +223,7 @@ function UserInactive(props) {
                 });
             });
     };
+
 
     return (
 
@@ -219,7 +249,7 @@ function UserInactive(props) {
                 </div>
                 <div
                     className="button button-delete"
-                    onClick={() => console.log("Borrar")}
+                    onClick={()=>showDeleteConfirm({user, setReloadUsers})}
                 >
                     <Icon.DeleteOutlineOutlined />
                 </div>

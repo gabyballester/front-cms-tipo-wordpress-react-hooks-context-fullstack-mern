@@ -152,18 +152,18 @@ export async function updateUserApi(token, user, userId) {
 
 export async function activateUserApi(token, userId, status) {
     const url = `${basePath}/${apiVersion}/activate-user/${userId}`;
-  
+
     const params = {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: token
-      },
-      body: JSON.stringify({
-        active: status
-      })
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: token
+        },
+        body: JSON.stringify({
+            active: status
+        })
     };
-  
+
     try {
         const response = await fetch(url, params);
         const result = await response.json();
@@ -171,4 +171,24 @@ export async function activateUserApi(token, userId, status) {
     } catch (err) {
         return err.message;
     }
-  }
+}
+
+export async function deleteUserApi(token, userId) {
+    const url = `${basePath}/${apiVersion}/delete-user/${userId}`;
+
+    const params = {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: token
+        }
+    };
+
+    try {
+        const response = await fetch(url, params);
+        const result = await response.json();
+        return result.message;
+    } catch (err) {
+        return err.message;
+    }
+}
