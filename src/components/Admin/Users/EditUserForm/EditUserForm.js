@@ -10,7 +10,7 @@ import { roles } from "../../../../utils/constants";
 import "./EditUserForm.scss";
 
 export default function EditUserForm(props) {
-    const { user,setIsVisibleModal, setReloadUsers } = props;
+    const { user, setIsVisibleModal, setReloadUsers } = props;
     const [avatar, setAvatar] = useState(null);
     const [userData, setUserData] = useState({})
 
@@ -53,8 +53,8 @@ export default function EditUserForm(props) {
 
         let userUpdate = userData;
 
-        
-  
+
+
         if (userUpdate.password || userUpdate.repeatPassword) {
             if (userUpdate.password !== userUpdate.repeatPassword) {
                 notification.error({
@@ -79,11 +79,15 @@ export default function EditUserForm(props) {
                 userUpdate.avatar = response.avatarName;
                 updateUserApi(token, userUpdate, user._id).then(result => {
                     notification.success({
-                        message:  result.message
+                        message: result.message
                     });
                     setIsVisibleModal(false);
                     setReloadUsers(true);
-                    setUserData({ ...userData, password: null, repeatPassword: null });
+                    setUserData({});
+                }).catch(err => {
+                    notification.error({
+                        message: err
+                    });
                 });
             });
         } else {
@@ -93,7 +97,11 @@ export default function EditUserForm(props) {
                 });
                 setIsVisibleModal(false);
                 setReloadUsers(true);
-                setUserData({ ...userData, password: null, repeatPassword: null });
+                setUserData({});
+            }).catch(err => {
+                notification.error({
+                    message: err
+                });
             });
         }
     };
@@ -157,7 +165,7 @@ function EditForm(props) {
 
     return (
         <Form className="form-edit"
-           
+
         >
             <Row gutter={24}>
                 <Col span={12}>
@@ -203,7 +211,7 @@ function EditForm(props) {
                 <Col span={12}>
                     <Form.Item>
                         <Select
-                            placeholder="Seleccióna una rol"
+                            placeholder="Selecciona una rol"
                             onChange={(e) => {
                                 setUserData({ ...userData, role: e });
                             }}
@@ -247,7 +255,7 @@ function EditForm(props) {
             </Row>
 
             <Form.Item>
-                <Button type="primary" className="btn-submit" htmlType="submit"  onClick={updateUser} >
+                <Button type="primary" className="btn-submit" htmlType="submit" onClick={updateUser} >
                     Actualizar Usuario
         </Button>
             </Form.Item>

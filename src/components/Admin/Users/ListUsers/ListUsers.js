@@ -1,11 +1,12 @@
 import { Fragment, useEffect, useState } from "react";
 import NoAvatar from "../../../../assets/img/png/no-avatar.png";
-import { notification, Modal as ModalAntd } from "antd";
+import { notification, Modal as ModalAntd, Button } from "antd";
 import SwitchButton from "../../common/SwitchButton";
 import Avatar from "@material-ui/core/Avatar";
 import * as Icon from "@material-ui/icons";
 import Modal from "../../../Modal";
 import EditUserForm from "../EditUserForm";
+import AddUserForm from "../AddUserForm";
 import { getAvatarApi, activateUserApi, deleteUserApi } from "../../../../api/user";
 import { getAccessTokenApi } from "../../../../api/auth";
 
@@ -14,7 +15,7 @@ import "./ListUsers.scss";
 const { confirm } = ModalAntd;
 
 const showDeleteConfirm = (props) => {
-    const {user, setReloadUsers} = props;
+    const { user, setReloadUsers } = props;
     const accesToken = getAccessTokenApi();
 
     confirm({
@@ -42,21 +43,39 @@ const showDeleteConfirm = (props) => {
 
 
 export default function ListUsers(props) {
-    const { usersActive, usersInactive, setReloadUsers} = props;
+    const { usersActive, usersInactive, setReloadUsers } = props;
     const [viewUsersActives, setViewUsersActives] = useState(true);
     const [isVisibleModal, setIsVisibleModal] = useState(false);
-    const [modalTitle, setModalTitle] = useState("")
-    const [modalContent, setModalContent] = useState(null)
+    const [modalTitle, setModalTitle] = useState("");
+    const [modalContent, setModalContent] = useState(null);
+
+    const addUserModal = () => {
+        setIsVisibleModal(true);
+        setModalTitle("Creando nuevo usuario");
+        setModalContent(
+            <AddUserForm
+            setIsVisibleModal={setIsVisibleModal}
+            setReloadUsers={setReloadUsers}
+          />
+        );
+    };
+
     return (
         <div className="list-users">
-            <div className="list-users-switch">
-                <SwitchButton
-                    viewUsersActives={viewUsersActives}
-                    setViewUsersActives={setViewUsersActives}
-                />
-                <span>
-                    {viewUsersActives ? "Usuarios activos" : "Usuarios inactivos"}
-                </span>
+            <div className="list-user-header">
+
+                <div className="list-users-switch">
+                    <SwitchButton
+                        viewUsersActives={viewUsersActives}
+                        setViewUsersActives={setViewUsersActives}
+                    />
+                    <span>
+                        {viewUsersActives ? "Usuarios activos" : "Usuarios inactivos"}
+                    </span>
+                </div>
+                <Button type="primary" onClick={addUserModal}>
+                    Nuevo Usuario
+                </Button>
             </div>
             {viewUsersActives ? (
                 <UsersActive
@@ -82,7 +101,7 @@ export default function ListUsers(props) {
 }
 
 function UsersActive(props) {
-    const { usersActive, setIsVisibleModal, setModalTitle, setModalContent, setReloadUsers,showDeleteConfirm} = props;
+    const { usersActive, setIsVisibleModal, setModalTitle, setModalContent, setReloadUsers, showDeleteConfirm } = props;
     const usersArray = usersActive;
 
     const editUser = user => {
@@ -167,7 +186,7 @@ function UserActive(props) {
                 </div>
                 <div
                     className="button button-delete"
-                    onClick={()=>showDeleteConfirm({user, setReloadUsers})}
+                    onClick={() => showDeleteConfirm({ user, setReloadUsers })}
                 >
                     <Icon.DeleteOutlineOutlined />
                 </div>
@@ -207,7 +226,7 @@ function UserInactive(props) {
     }, [user]);
 
     const activateUser = (props) => {
-        const {showDeleteConfirm} = props;
+        const { showDeleteConfirm } = props;
         const accesToken = getAccessTokenApi();
 
         activateUserApi(accesToken, user._id, true)
@@ -249,7 +268,7 @@ function UserInactive(props) {
                 </div>
                 <div
                     className="button button-delete"
-                    onClick={()=>showDeleteConfirm({user, setReloadUsers})}
+                    onClick={() => showDeleteConfirm({ user, setReloadUsers })}
                 >
                     <Icon.DeleteOutlineOutlined />
                 </div>
