@@ -24,8 +24,6 @@ export function signUpApi(data) {
 
 export function signInApi(data) {
     const url = `${basePath}/${apiVersion}/sign-in`;
-    console.log(data);
-    console.log(url);
     const params = {
         method: "POST",
         body: JSON.stringify(data),
@@ -86,7 +84,7 @@ export function getUsersActiveApi(token, status) {
 
     return fetch(url, params)
         .then(response => {
-            
+
             return response.json();
         })
         .then((result) => {
@@ -95,4 +93,59 @@ export function getUsersActiveApi(token, status) {
         .catch(err => {
             return err.message;
         });
+}
+
+export async function uploadAvatarApi(token, avatar, userId) {
+    const url = `${basePath}/${apiVersion}/upload-avatar/${userId}`;
+
+    const formData = new FormData();
+    formData.append("avatar", avatar, avatar.name);
+
+    const params = {
+        method: "PUT",
+        body: formData,
+        headers: {
+            Authorization: token
+        }
+    };
+
+    try {
+        const response = await fetch(url, params);
+        const result = await response.json();
+        return result;
+    } catch (err) {
+        return err.message;
+    }
+}
+
+export async function getAvatarApi(avatarName) {
+    const url = `${basePath}/${apiVersion}/get-avatar/${avatarName}`;
+
+    try {
+        const response = await fetch(url);
+        return response.url;
+    } catch (err) {
+        return err.message;
+    }
+}
+
+export async function updateUserApi(token, user, userId) {
+    const url = `${basePath}/${apiVersion}/update-user/${userId}`;
+
+    const params = {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: token
+        },
+        body: JSON.stringify(user)
+    };
+
+    try {
+        const response = await fetch(url, params);
+        const result = await response.json();
+        return result;
+    } catch (err) {
+        return err.message;
+    }
 }

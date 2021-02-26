@@ -1,12 +1,13 @@
  @import '../../../../scss/variables';
 
- .list-users-switch{
+ .list-users-switch {
    display: flex;
    flex-direction: row;
    justify-content: flex-start;
-   align-items:center;
+   align-items: center;
    margin-bottom: 20px;
-   span{
+
+   span {
      margin: 0;
    }
  }
@@ -17,29 +18,31 @@
    margin-bottom: 3px;
    display: flex;
    flex-direction: row;
-   justify-content: center;
-   align-items: center;
+   justify-content: stretch;
+   align-items:center;
    flex-wrap: wrap;
-  //  border: 1px solid gray;
+   padding: 15px;
+   //  border: 1px solid gray;
 
    .avatar {
-     padding: 10px;
-    //  border: 1px solid gray;
+     display: flex;
+     justify-content: center;
+     align-items: center;
 
      .MuiAvatar-root,
      .MuiAvatar-circle,
      .MuiAvatar-colorDefault {
-       height: 2.5rem;
-       width: 2.5rem;
+       height: 4rem;
+       width: 4rem;
      }
    }
 
    .userInfo {
      height: 100%;
-    //  border: 1px solid gray;
+     margin-left: 10px;
      display: flex;
      flex-direction: column;
-     flex-grow: 3;
+     flex-grow: 1;
      justify-content: center;
      padding: 10px 10px;
 
@@ -51,7 +54,11 @@
 
    .actions {
      display: flex;
+     flex-direction: row;
+     justify-content: space-around;
      padding: 10px 10px;
+     min-width: 200px;
+     width: fit-content;
 
      .button {
        border-radius: 5px;
@@ -60,20 +67,23 @@
        justify-content: center;
        align-items: center;
        cursor: pointer;
-       padding: 1px 9px;
+       padding: 5px 9px;
        margin-right: 8px;
 
        .MuiSvgIcon-root {
-         width: 15px;
+         width: 20px;
        }
      }
 
-     .button-edit, .button-activate {
+     .button-edit,
+     .button-activate {
        background-color: $menu-color-item;
      }
-     .button-edit, .button-activate {
-      background-color: $menu-color-item-hover;
-    }
+
+     .button-edit:hover,
+     .button-activate:hover {
+       background-color: $menu-color-item-hover;
+     }
 
      .button-disable {
        background-color: $menu-color-item-warning;
@@ -82,15 +92,16 @@
      .button-disable:hover {
        background-color: $menu-color-item-warning-hover;
      }
+
      .button-delete {
-      background-color: $menu-color-item-danger;
-    }
+       background-color: $menu-color-item-danger;
+     }
 
-    .button-delete:hover {
-      background-color: $menu-color-item-danger-hover;
-    }
+     .button-delete:hover {
+       background-color: $menu-color-item-danger-hover;
+     }
 
-    
+
 
    }
  }
