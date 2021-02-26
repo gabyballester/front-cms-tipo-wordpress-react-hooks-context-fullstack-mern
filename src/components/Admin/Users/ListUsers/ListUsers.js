@@ -1,11 +1,13 @@
 import { Fragment, useEffect, useState } from "react";
 import NoAvatar from "../../../../assets/img/png/no-avatar.png";
+import { notification } from "antd";
 import SwitchButton from "../../common/SwitchButton";
 import Avatar from "@material-ui/core/Avatar";
 import * as Icon from "@material-ui/icons";
 import Modal from "../../../Modal";
 import EditUserForm from "../EditUserForm";
-import { getAvatarApi } from "../../../../api/user";
+import { getAvatarApi, activateUserApi } from "../../../../api/user";
+import { getAccessTokenApi } from "../../../../api/auth";
 
 import "./ListUsers.scss";
 
@@ -35,7 +37,7 @@ export default function ListUsers(props) {
                     setReloadUsers={setReloadUsers}
                 />
             ) : (
-                    <UsersInactive usersInactive={usersInactive} />
+                    <UsersInactive usersInactive={usersInactive} setReloadUsers={setReloadUsers} />
                 )}
             <Modal
                 title={modalTitle}
@@ -50,7 +52,7 @@ export default function ListUsers(props) {
 
 
 function UsersActive(props) {
-    const { usersActive, setIsVisibleModal, setModalTitle, setModalContent,setReloadUsers } = props;
+    const { usersActive, setIsVisibleModal, setModalTitle, setModalContent, setReloadUsers } = props;
     const usersArray = usersActive;
 
     const editUser = user => {
@@ -68,7 +70,7 @@ function UsersActive(props) {
         <Fragment>
             {usersArray && usersArray.length
                 ? usersArray.map((user, index) => (
-                    <UserActive user={user} key={index} editUser={editUser} />
+                    <UserActive user={user} key={index} editUser={editUser} setReloadUsers={setReloadUsers} />
                 ))
                 : "no hay usuarios"}
         </Fragment>
@@ -77,7 +79,7 @@ function UsersActive(props) {
 
 
 function UserActive(props) {
-    const { user, editUser } = props;
+    const { user, editUser, setReloadUsers} = props;
     const [avatar, setAvatar] = useState(null);
     // si existe el avatar lo actualiza
     useEffect(() => {
@@ -89,6 +91,23 @@ function UserActive(props) {
             setAvatar(null);
         }
     }, [user, avatar]);
+
+    const deactivateUser = () => {
+        const accesToken = getAccessTokenApi();
+
+        activateUserApi(accesToken, user._id, false)
+            .then(response => {
+                notification.success({
+                    message: response
+                });
+                setReloadUsers(true);
+            })
+            .catch(err => {
+                notification.error({
+                    message: err
+                });
+            });
+    };
 
     return (
         <div className="list-user-card">
@@ -113,7 +132,7 @@ function UserActive(props) {
                 </div>
                 <div
                     className="button button-disable"
-                    onClick={() => console.log("Desactivar")}
+                    onClick={deactivateUser}
                 >
                     <Icon.NotInterestedOutlined />
                 </div>
@@ -130,14 +149,14 @@ function UserActive(props) {
 }
 
 
-function UsersInactive({ usersInactive }) {
-    const usersArray = usersInactive;
-
+function UsersInactive(props) {
+    const {usersInactive, setReloadUsers} = props;
+        
     return (
         <Fragment>
-            {usersArray && usersArray.length
-                ? usersArray.map((user, index) => (
-                    <UserInactive user={user} key={index} />
+            {usersInactive && usersInactive.length
+                ? usersInactive.map((user, index) => (
+                    <UserInactive user={user} key={index} setReloadUsers={setReloadUsers}/>
                 ))
                 : "no hay usuarios"}
         </Fragment>
@@ -145,7 +164,7 @@ function UsersInactive({ usersInactive }) {
 }
 
 function UserInactive(props) {
-    const { user, editUser } = props;
+    const { user, setReloadUsers} = props;
     const [avatar, setAvatar] = useState(null);
 
     // si existe el avatar lo actualiza
@@ -158,6 +177,23 @@ function UserInactive(props) {
             setAvatar(null);
         }
     }, [user]);
+
+    const activateUser = () => {
+        const accesToken = getAccessTokenApi();
+
+        activateUserApi(accesToken, user._id, true)
+            .then(response => {
+                notification.success({
+                    message: response
+                });
+                setReloadUsers(true);
+            })
+            .catch(err => {
+                notification.error({
+                    message: err
+                });
+            });
+    };
 
     return (
 
@@ -177,7 +213,7 @@ function UserInactive(props) {
             <div className="actions">
                 <div
                     className="button button-activate"
-                    onClick={() => console.log("Activar")}
+                    onClick={activateUser}
                 >
                     <Icon.CheckOutlined />
                 </div>
