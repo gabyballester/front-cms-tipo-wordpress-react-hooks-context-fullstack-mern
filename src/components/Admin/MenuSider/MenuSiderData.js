@@ -10,4 +10,9 @@ export const MenuSiderData = [
         path: '/admin/users',
         icon: <Icons.PeopleAltOutlined/>,
     },
+    {
+        name: 'Menú',
+        path: '/admin/menu',
+        icon: <Icons.Menu/>,
+    },
 ]
