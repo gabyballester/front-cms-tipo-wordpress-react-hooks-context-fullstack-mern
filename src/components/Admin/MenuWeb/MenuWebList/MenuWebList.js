@@ -3,6 +3,9 @@ import { Switch, List, Button, Modal as ModalAntd, notification } from "antd";
 import * as Icon from '@ant-design/icons';
 import Modal from "../../../Modal";
 import DragSortableList from "react-drag-sortable";
+import { updateMenuApi } from "../../../../api/menu";
+import { getAccessTokenApi } from "../../../../api/auth";
+
 import "./MenuWebList.scss";
 
 const { confirm } = ModalAntd;
@@ -13,22 +16,42 @@ export default function MenuWebList(props) {
   const [isVisibleModal, setIsVisibleModal] = useState(false);
   const [modalTitle, setModalTitle] = useState("");
   const [modalContent, setModalContent] = useState(null);
-
+  
   useEffect(() => {
     const listItemsArray = [];
     menu.forEach(item => {
       listItemsArray.push({
         content: (
-          <MenuItem item={item}/>
+          <MenuItem item={item} />
         )
       });
     });
     setListItems(listItemsArray);
   }, [menu]);
 
+
   const onSort = (sortedList, dropEvent) => {
-    console.log(sortedList);
+    const accesToken = getAccessTokenApi();
+
+    sortedList.forEach(item => {
+      const { _id } = item.content.props.item;
+      const order = item.rank;
+      updateMenuApi(accesToken, _id, { order });
+    });
   };
+
+  const addMenuWebModal = () => {
+    setIsVisibleModal(true);
+    setModalTitle("Creando nuevo menú");
+    setModalContent(
+      <div>add menu web form</div>
+      // <AddMenuWebForm
+      //   setIsVisibleModal={setIsVisibleModal}
+      //   setReloadMenuWeb={setReloadMenuWeb}
+      // />
+    );
+  };
+
 
   return (
     <div className="menu-web-list">
@@ -52,7 +75,7 @@ function MenuItem(props) {
   return (
     <List.Item
       actions={[
-        <Switch defaultChecked={item.active}/>,
+        <Switch defaultChecked={item.active} />,
         <Button type="primary">
           <Icon.EditOutlined />
         </Button>,
