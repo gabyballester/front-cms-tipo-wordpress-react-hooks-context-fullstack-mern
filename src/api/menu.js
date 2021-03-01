@@ -1,21 +1,18 @@
 import { basePath, apiVersion } from "./config";
 
-export function getMenuApi() {
+export async function getMenuApi() {
   const url = `${basePath}/${apiVersion}/get-menus`;
 
-  return fetch(url)
-    .then(response => {
-      return response.json();
-    })
-    .then(result => {
-      return result;
-    })
-    .catch(err => {
-      return err.message;
-    });
+  try {
+    const response = await fetch(url);
+    const result = await response.json();
+    return result;
+  } catch (err) {
+    return err.message;
+  }
 }
 
-export function updateMenuApi(token, menuId, data) {
+export async function updateMenuApi(token, menuId, data) {
   const url = `${basePath}/${apiVersion}/update-menu/${menuId}`;
 
   const params = {
@@ -27,19 +24,16 @@ export function updateMenuApi(token, menuId, data) {
     body: JSON.stringify(data)
   };
 
-  return fetch(url, params)
-    .then(response => {
-      return response.json();
-    })
-    .then(result => {
-      return result.message;
-    })
-    .catch(err => {
-      return err;
-    });
+  try {
+    const response = await fetch(url, params);
+    const result = await response.json();
+    return result.message;
+  } catch (err) {
+    return err;
+  }
 }
 
-export function activateMenuApi(token, menuId, status) {
+export async function activateMenuApi(token, menuId, status) {
   const url = `${basePath}/${apiVersion}/activate-menu/${menuId}`;
 
   const params = {
@@ -51,19 +45,16 @@ export function activateMenuApi(token, menuId, status) {
     body: JSON.stringify({ active: status })
   };
 
-  return fetch(url, params)
-    .then(response => {
-      return response.json();
-    })
-    .then(result => {
-      return result.message;
-    })
-    .catch(err => {
-      console.log(err); // por consola para que el usuario no lo vea
-    });
+  try {
+    const response = await fetch(url, params);
+    const result = await response.json();
+    return result.message;
+  } catch (err) {
+    console.log(err); // por consola para que el usuario no lo vea
+  }
 }
 
-export function addMenuApi(token, menu) {
+export async function addMenuApi(token, menu) {
   const url = `${basePath}/${apiVersion}/add-menu`;
 
   const params = {
@@ -75,14 +66,31 @@ export function addMenuApi(token, menu) {
     body: JSON.stringify(menu)
   };
 
-  return fetch(url, params)
-    .then(response => {
-      return response.json();
-    })
-    .then(result => {
-      return result.message;
-    })
-    .catch(err => {
-      console.log(err);
-    });
+  try {
+    const response = await fetch(url, params);
+    const result = await response.json();
+    return result.message;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export async function deleteMenuApi(token, menuId) {
+  const url = `${basePath}/${apiVersion}/delete-menu/${menuId}`;
+
+  const params = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: token
+    }
+  };
+
+  try {
+    const response = await fetch(url, params);
+    const result = await response.json();
+    return result.message;
+  } catch (err) {
+    console.log(err);
+  }
 }
