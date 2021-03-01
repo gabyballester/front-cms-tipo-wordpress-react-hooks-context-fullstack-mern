@@ -1,12 +1,12 @@
 import {Fragment} from "react";
 import { Route, Switch } from "react-router-dom";
-import { Layout, Row, Col } from "antd";
+import { Row, Col } from "antd";
 import MenuTop from "../components/Web/MenuTop";
+import Footer from "../components/Web/Footer";
 
 export default function LayoutBasic(props) {
   const { routes } = props;
-  const { Footer } = Layout;
-
+  
   return (
     <Fragment>
       <Row>
