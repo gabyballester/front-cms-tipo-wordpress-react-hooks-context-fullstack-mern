@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Form, Input, Button, Select, notification } from "antd";
 import * as Icon from '@ant-design/icons';
 import { addMenuApi } from "../../../../api/menu";
@@ -61,6 +61,11 @@ export default function AddMenuWebForm(props) {
 function AddForm(props) {
   const { menuWebData, setMenuWebData, addMenu } = props;
   const { Option } = Select;
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, [inputRef])
 
   const selectBefore = (
     <Select
@@ -77,6 +82,7 @@ function AddForm(props) {
     <Form className="form-add">
       <Form.Item>
         <Input
+        ref={inputRef} 
           prefix={<Icon.FontSizeOutlined />}
           placeholder="Titulo"
           value={menuWebData.title}

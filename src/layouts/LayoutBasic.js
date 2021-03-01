@@ -1,20 +1,23 @@
 
 import { Route, Switch } from "react-router-dom";
+import { Layout, Row, Col } from "antd";
+import MenuTop from "../components/Web/MenuTop";
 
 export default function LayoutBasic(props) {
   const { routes } = props;
+  const { Footer } = Layout;
 
   return (
-    <div className="layout">
-      <div className="sidebar">Basic Sidebar</div>
-      <div className="main">
-        <div className="header">basic header</div>
-        <div className="content">
-          <LoadRoutes routes={routes} />
-        </div>
-        <div className="footer">Footer</div>
-      </div>
-    </div>
+
+    <Row>
+      <Col lg={4} />
+      <Col lg={16}>
+        <MenuTop />
+        <LoadRoutes routes={routes} />
+        <Footer> Gabriel Ballester </Footer>
+      </Col>
+      <Col lg={4} />
+    </Row>
   );
 }
 

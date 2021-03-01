@@ -18,7 +18,7 @@ export default function SignIn() {
     <div className="layout-signin">
       <div className="content-signin">
         <h1 className="logo-signin">
-          <img className="logo-signin-img" src={Logo} alt="logo" />
+          <img className="logo-signin-img" src={Logo} alt="Gabriel Ballester" />
         </h1>
         {/* tab-layout */}
         <div className="tab-layout-signin">
