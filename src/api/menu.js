@@ -38,3 +38,51 @@ export function updateMenuApi(token, menuId, data) {
       return err;
     });
 }
+
+export function activateMenuApi(token, menuId, status) {
+  const url = `${basePath}/${apiVersion}/activate-menu/${menuId}`;
+
+  const params = {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: token
+    },
+    body: JSON.stringify({ active: status })
+  };
+
+  return fetch(url, params)
+    .then(response => {
+      return response.json();
+    })
+    .then(result => {
+      return result.message;
+    })
+    .catch(err => {
+      console.log(err); // por consola para que el usuario no lo vea
+    });
+}
+
+export function addMenuApi(token, menu) {
+  const url = `${basePath}/${apiVersion}/add-menu`;
+
+  const params = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: token
+    },
+    body: JSON.stringify(menu)
+  };
+
+  return fetch(url, params)
+    .then(response => {
+      return response.json();
+    })
+    .then(result => {
+      return result.message;
+    })
+    .catch(err => {
+      console.log(err);
+    });
+}

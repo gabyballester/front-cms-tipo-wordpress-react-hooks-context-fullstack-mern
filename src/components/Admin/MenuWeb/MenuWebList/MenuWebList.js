@@ -3,8 +3,9 @@ import { Switch, List, Button, Modal as ModalAntd, notification } from "antd";
 import * as Icon from '@ant-design/icons';
 import Modal from "../../../Modal";
 import DragSortableList from "react-drag-sortable";
-import { updateMenuApi } from "../../../../api/menu";
+import { updateMenuApi, activateMenuApi } from "../../../../api/menu";
 import { getAccessTokenApi } from "../../../../api/auth";
+import AddMenuWebForm from "../AddMenuWebForm";
 
 import "./MenuWebList.scss";
 
@@ -16,18 +17,27 @@ export default function MenuWebList(props) {
   const [isVisibleModal, setIsVisibleModal] = useState(false);
   const [modalTitle, setModalTitle] = useState("");
   const [modalContent, setModalContent] = useState(null);
-  
+
   useEffect(() => {
     const listItemsArray = [];
     menu.forEach(item => {
       listItemsArray.push({
         content: (
-          <MenuItem item={item} />
+          <MenuItem item={item} activateMenu={activateMenu} />
         )
       });
     });
     setListItems(listItemsArray);
   }, [menu]);
+
+  const activateMenu = (menu, status) => {
+    const accesToken = getAccessTokenApi();
+    activateMenuApi(accesToken, menu._id, status).then(response => {
+      notification.success({
+        message: response
+      });
+    });
+  };
 
 
   const onSort = (sortedList, dropEvent) => {
@@ -40,15 +50,15 @@ export default function MenuWebList(props) {
     });
   };
 
+
   const addMenuWebModal = () => {
     setIsVisibleModal(true);
     setModalTitle("Creando nuevo menú");
     setModalContent(
-      <div>add menu web form</div>
-      // <AddMenuWebForm
-      //   setIsVisibleModal={setIsVisibleModal}
-      //   setReloadMenuWeb={setReloadMenuWeb}
-      // />
+      <AddMenuWebForm
+        setIsVisibleModal={setIsVisibleModal}
+        setReloadMenuWeb={setReloadMenuWeb}
+      />
     );
   };
 
@@ -56,30 +66,36 @@ export default function MenuWebList(props) {
   return (
     <div className="menu-web-list">
       <div className="menu-web-list__header">
-        <Button type="primary">
-          Menú menú
+        <Button type="primary" onClick={addMenuWebModal}>
+          Crear menú
         </Button>
       </div>
 
       <div className="menu-web-list__items">
         <DragSortableList items={listItems} onSort={onSort} type="vertical" />
       </div>
-
+      <Modal
+        title={modalTitle}
+        isVisible={isVisibleModal}
+        setIsVisible={setIsVisibleModal}
+      >
+        {modalContent}
+      </Modal>
     </div>
   )
 }
 
 function MenuItem(props) {
-  const { item, activateMenu, editMenuWebModal, deleteMenu } = props;
+  const { item, activateMenu } = props;
 
   return (
     <List.Item
       actions={[
-        <Switch defaultChecked={item.active} />,
+        <Switch defaultChecked={item.active} onChange={e => activateMenu(item, e)} />,
         <Button type="primary">
           <Icon.EditOutlined />
         </Button>,
-        <Button type="danger" onClick={() => deleteMenu(item)}>
+        <Button type="danger">
           <Icon.WarningOutlined />
         </Button>
       ]}
