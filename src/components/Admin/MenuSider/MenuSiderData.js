@@ -15,4 +15,9 @@ export const MenuSiderData = [
         path: '/admin/menu',
         icon: <Icons.Menu/>,
     },
+    {
+        name: 'Cursos',
+        path: '/admin/courses',
+        icon: <Icons.BookOutlined/>,
+    },
 ]
