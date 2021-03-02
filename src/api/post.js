@@ -11,3 +11,23 @@ export async function getPostsPaginatedApi(limit, page) {
     return err;
   }
 }
+
+export async function deletePostApi(token, id) {
+  const url = `${basePath}/${apiVersion}/delete-post/${id}`;
+
+  const params = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: token
+    }
+  };
+
+  try {
+    const response = await fetch(url, params);
+    const result = await response.json();
+    return result;
+  } catch (err) {
+    return err;
+  }
+}

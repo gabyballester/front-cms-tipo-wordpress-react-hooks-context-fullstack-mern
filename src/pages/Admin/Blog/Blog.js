@@ -17,8 +17,7 @@ function Blog(props) {
   const [modalTitle, setModalTitle] = useState("");
   const [modalContent, setModalContent] = useState(null);
   const { page = 1 } = queryString.parse(location.search);
-  console.log(page);
-
+  
   useEffect(() => {
     getPostsPaginatedApi(12, page)
       .then(response => {
@@ -49,7 +48,7 @@ function Blog(props) {
           Nuevo post
         </Button>
       </div>
-      <PostsList posts={posts} />
+      <PostsList posts={posts} setReloadPosts={setReloadPosts} />
       <Pagination posts={posts} location={location} history={history} />
       <Modal
         title={modalTitle}

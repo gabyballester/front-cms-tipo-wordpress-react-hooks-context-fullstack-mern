@@ -5,7 +5,7 @@ export default function Pagination(props) {
   const { posts, location, history } = props;
   const currentPage = parseInt(posts.page);
   const {total, limit} = posts;
-  
+
   const onChangePage = newPage => {
     history.push(`${location.pathname}?page=${newPage}`);
   };
