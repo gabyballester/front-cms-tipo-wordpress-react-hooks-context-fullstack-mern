@@ -52,3 +52,24 @@ export async function addPostApi(token, post) {
     return err;
   }
 }
+
+export async function updatePostApi(token, id, data) {
+  const url = `${basePath}/${apiVersion}/update-post/${id}`;
+
+  const params = {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: token
+    },
+    body: JSON.stringify(data)
+  };
+
+  try {
+    const response = await fetch(url, params);
+    const result = await response.json();
+    return result;
+  } catch (err) {
+    return err;
+  }
+}

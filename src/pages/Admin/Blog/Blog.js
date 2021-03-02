@@ -50,6 +50,19 @@ function Blog(props) {
     );
   };
 
+  const editPost = post => {
+    console.log('editando post');
+    setIsVisibleModal(true);
+    setModalTitle("Editar post");
+    setModalContent(
+      <AddEditPostForm
+        setIsVisibleModal={setIsVisibleModal}
+        setReloadPosts={setReloadPosts}
+        post={post}
+      />
+    );
+  };
+
   if (!posts) {
     return null;
   }
@@ -61,7 +74,7 @@ function Blog(props) {
           Nuevo post
         </Button>
       </div>
-      <PostsList posts={posts} setReloadPosts={setReloadPosts} />
+      <PostsList posts={posts} setReloadPosts={setReloadPosts} editPost={editPost}/>
       <Pagination posts={posts} location={location} history={history} />
       <Modal
         title={modalTitle}

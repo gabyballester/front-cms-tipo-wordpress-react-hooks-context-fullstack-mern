@@ -9,7 +9,7 @@ import "./PostsList.scss";
 const { confirm } = Modal;
 
 export default function PostsList(props) {
-  const { posts, setReloadPosts } = props;
+  const { posts, setReloadPosts, editPost } = props;
 
   const deletePost = post => {
     const accessToken = getAccessTokenApi();
@@ -44,7 +44,7 @@ export default function PostsList(props) {
       <List
         dataSource={posts.docs}
         renderItem={post =>
-          <Post post={post} deletePost={deletePost} />
+          <Post post={post} deletePost={deletePost} editPost={editPost} />
         }
       />
     </div>
@@ -52,7 +52,7 @@ export default function PostsList(props) {
 }
 
 function Post(props) {
-  const { post, deletePost } = props;
+  const { post, deletePost, editPost} = props;
 
   return (
     <List.Item
@@ -62,7 +62,7 @@ function Post(props) {
             <Icon.EyeOutlined />
           </Button>
         </Link>,
-        <Button type="primary" onClick={() => console.log('editar')}>
+        <Button type="primary" onClick={() => editPost(post)}>
           <Icon.EditOutlined />
         </Button>,
         <Button type="danger" onClick={() => deletePost(post)}>
