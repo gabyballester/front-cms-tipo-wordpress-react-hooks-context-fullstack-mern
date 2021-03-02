@@ -6,7 +6,7 @@ import Modal from "../../../Modal";
 import AddEditCourseForm from "../AddEditCourseForm";
 import { getCourseDataUdemyApi, } from "../../../../api/course";
 import { getAccessTokenApi } from "../../../../api/auth";
-import { deleteCourseApi } from "../../../../api/course";
+import { deleteCourseApi, updateCourseApi } from "../../../../api/course";
 
 import "./CoursesList.scss";
 
@@ -30,7 +30,14 @@ export default function CoursesList(props) {
   }, [courses]);
 
   const onSort = (sortedList, dropEvent) => {
-    console.log('lista ordenada');
+    const accessToken = getAccessTokenApi();
+
+    sortedList.forEach(item => {
+      const { _id } = item.content.props.course;
+      const order = item.rank;
+      updateCourseApi(accessToken, _id, { order });
+    });
+    console.log('finaliza recorrido');
   };
 
   const addCourseModal = () => {
