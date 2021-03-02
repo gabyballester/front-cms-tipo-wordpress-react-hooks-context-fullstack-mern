@@ -37,7 +37,6 @@ export default function CoursesList(props) {
       const order = item.rank;
       updateCourseApi(accessToken, _id, { order });
     });
-    console.log('finaliza recorrido');
   };
 
   const addCourseModal = () => {

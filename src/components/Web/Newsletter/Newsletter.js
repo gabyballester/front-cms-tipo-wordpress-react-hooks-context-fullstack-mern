@@ -14,7 +14,6 @@ export default function Newsletter() {
     const emailValid = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     const resultValidation = emailValid.test(email);
 
-    console.log(resultValidation);
     if (!resultValidation) {
       notification.error({
         message: "El correo electronico no es valido."

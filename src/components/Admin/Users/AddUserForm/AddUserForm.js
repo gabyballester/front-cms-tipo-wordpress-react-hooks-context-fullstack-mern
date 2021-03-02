@@ -13,7 +13,6 @@ export default function EditUserForm(props) {
 
   const addUser = event => {
     event.preventDefault();
-    console.log('adduser');
 
     if (
       !userData.name ||

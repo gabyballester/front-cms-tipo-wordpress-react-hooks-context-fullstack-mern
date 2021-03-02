@@ -72,7 +72,6 @@ export default function HowMyCoursesWork() {
 function CardInfo(props) {
   const { icon, title, description } = props;
   const { Meta } = Card;
-  console.log(icon);
 
   return (
     <Card className="how-my-courses-work__card">

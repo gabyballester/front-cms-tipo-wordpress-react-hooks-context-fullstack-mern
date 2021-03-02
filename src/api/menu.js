@@ -71,7 +71,7 @@ export async function addMenuApi(token, menu) {
     const result = await response.json();
     return result.message;
   } catch (err) {
-    console.log(err);
+    console.log(err); // por consola para que el usuario no lo vea
   }
 }
 
@@ -91,6 +91,5 @@ export async function deleteMenuApi(token, menuId) {
     const result = await response.json();
     return result.message;
   } catch (err) {
-    console.log(err);
   }
 }
