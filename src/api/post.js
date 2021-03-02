@@ -31,3 +31,24 @@ export async function deletePostApi(token, id) {
     return err;
   }
 }
+
+export async function addPostApi(token, post) {
+  const url = `${basePath}/${apiVersion}/add-post`;
+
+  const params = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: token
+    },
+    body: JSON.stringify(post)
+  };
+
+  try {
+    const response = await fetch(url, params);
+    const result = await response.json();
+    return result;
+  } catch (err) {
+    return err;
+  }
+}

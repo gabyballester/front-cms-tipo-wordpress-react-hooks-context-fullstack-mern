@@ -70,7 +70,7 @@ function Post(props) {
         </Button>
       ]}
     >
-      <List.Item.Meta title={post.title} />
+      <List.Item.Meta title={post.title} className=""/>
     </List.Item>
   )
 }

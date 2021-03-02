@@ -1,4 +1,7 @@
 @import "../../../../scss/index.scss";
 
 .posts-list {
+  .ant-list-item{
+    border-bottom: 1px solid $border-grey-light;
+  }
 }

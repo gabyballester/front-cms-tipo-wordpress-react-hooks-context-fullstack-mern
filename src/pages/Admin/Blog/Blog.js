@@ -5,6 +5,7 @@ import queryString from "query-string";
 import Modal from "../../../components/Modal";
 import PostsList from "../../../components/Admin/Blog/PostsList";
 import Pagination from "../../../components/Pagination";
+import AddEditPostForm from "../../../components/Admin/Blog/AddEditPostForm";
 import { getPostsPaginatedApi } from "../../../api/post";
 
 import "./Blog.scss";
@@ -17,7 +18,7 @@ function Blog(props) {
   const [modalTitle, setModalTitle] = useState("");
   const [modalContent, setModalContent] = useState(null);
   const { page = 1 } = queryString.parse(location.search);
-  
+
   useEffect(() => {
     getPostsPaginatedApi(12, page)
       .then(response => {
@@ -37,6 +38,18 @@ function Blog(props) {
     setReloadPosts(false);
   }, [page, reloadPosts]);
 
+  const addPost = () => {
+    setIsVisibleModal(true);
+    setModalTitle("Creando nuevo post");
+    setModalContent(
+      <AddEditPostForm
+        setIsVisibleModal={setIsVisibleModal}
+        setReloadPosts={setReloadPosts}
+        post={null}
+      />
+    );
+  };
+
   if (!posts) {
     return null;
   }
@@ -44,7 +57,7 @@ function Blog(props) {
   return (
     <div className="blog">
       <div className="blog__add-post">
-        <Button type="primary">
+        <Button type="primary" onClick={addPost}>
           Nuevo post
         </Button>
       </div>
