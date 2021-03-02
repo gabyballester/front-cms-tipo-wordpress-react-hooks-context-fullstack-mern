@@ -25,3 +25,23 @@ export async function getCourseDataUdemyApi(id) {
     return err;
   }
 }
+
+export async function deleteCourseApi(token, id) {
+  const url = `${basePath}/${apiVersion}/delete-course/${id}`;
+
+  const params = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: token
+    }
+  };
+
+  try {
+    const response = await fetch(url, params);
+    const result = await response.json();
+    return result;
+  } catch (err) {
+    return err;
+  }
+}
