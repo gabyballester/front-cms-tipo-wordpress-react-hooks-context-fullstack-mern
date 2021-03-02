@@ -3,6 +3,7 @@ import { List, Button, Modal as ModalAntd, notification } from "antd";
 import * as Icon from '@ant-design/icons'
 import DragSortableList from "react-drag-sortable";
 import Modal from "../../../Modal";
+import AddEditCourseForm from "../AddEditCourseForm";
 import { getCourseDataUdemyApi, } from "../../../../api/course";
 import { getAccessTokenApi } from "../../../../api/auth";
 import { deleteCourseApi } from "../../../../api/course";
@@ -22,7 +23,7 @@ export default function CoursesList(props) {
     const listCourseArray = [];
     courses.forEach(course => {
       listCourseArray.push({
-        content: (<Course course={course} deleteCourse={deleteCourse} />)
+        content: (<Course course={course} deleteCourse={deleteCourse} editCourseModal={editCourseModal} />)
       });
     });
     setListCourses(listCourseArray);
@@ -30,6 +31,29 @@ export default function CoursesList(props) {
 
   const onSort = (sortedList, dropEvent) => {
     console.log('lista ordenada');
+  };
+
+  const addCourseModal = () => {
+    setIsVisibleModal(true);
+    setModalTitle("Crear nuevo curso");
+    setModalContent(
+      <AddEditCourseForm
+        setIsVisibleModal={setIsVisibleModal}
+        setReloadCourses={setReloadCourses}
+      />
+    );
+  };
+
+  const editCourseModal = course => {
+    setIsVisibleModal(true);
+    setModalTitle("Actualizando curso");
+    setModalContent(
+      <AddEditCourseForm
+        setIsVisibleModal={setIsVisibleModal}
+        setReloadCourses={setReloadCourses}
+        course={course}
+      />
+    );
   };
 
   const deleteCourse = course => {
@@ -63,7 +87,7 @@ export default function CoursesList(props) {
   return (
     <div className="courses-list">
       <div className="courses-list__header">
-        <Button type="primary" onClick={() => console.log('Creando curso..')}>
+        <Button type="primary" onClick={addCourseModal}>
           Nuevo curso
         </Button>
       </div>
@@ -76,12 +100,19 @@ export default function CoursesList(props) {
         )}
         <DragSortableList items={listCourses} onSort={onSort} type="vertical" />
       </div>
+      <Modal
+        title={modalTitle}
+        isVisible={isVisibleModal}
+        setIsVisible={setIsVisibleModal}
+      >
+        {modalContent}
+      </Modal>
     </div>
   )
 }
 
 function Course(props) {
-  const { course, deleteCourse } = props;
+  const { course, deleteCourse, editCourseModal } = props;
   const [courseData, setCourseData] = useState(null);
 
   useEffect(() => {
@@ -102,7 +133,7 @@ function Course(props) {
   return (
     <List.Item
       actions={[
-        <Button type="primary" onClick={() => console.log('editcourse')}>
+        <Button type="primary" onClick={() => editCourseModal(course)}>
           <Icon.EditOutlined />
         </Button>,
         <Button type="danger" onClick={() => deleteCourse(course)}>
