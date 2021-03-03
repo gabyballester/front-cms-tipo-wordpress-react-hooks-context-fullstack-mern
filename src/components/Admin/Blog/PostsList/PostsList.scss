@@ -1,7 +1,29 @@
 @import "../../../../scss/index.scss";
 
 .posts-list {
-  .ant-list-item{
+  .ant-list-item {
     border-bottom: 1px solid $border-grey-light;
+
+    .info {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      justify-content: flex-start;
+
+       .date {
+        flex-direction: row;
+        font-size: 15px;
+        color: $font-light;
+        background-color: $primary-color;
+        border-radius: 5px;
+        padding: 5px 10px;
+      }
+      .title{
+        font-size: 1.2rem;
+        margin-left: 5rem;
+      }
+      
+
+    }
   }
 }

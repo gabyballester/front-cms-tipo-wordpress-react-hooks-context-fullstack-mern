@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { List, Button, Modal, notification } from "antd";
 import * as Icon from "@ant-design/icons";
+import moment from "moment";
 import { getAccessTokenApi } from "../../../../api/auth";
 import { deletePostApi } from "../../../../api/post";
 
@@ -13,7 +14,7 @@ export default function PostsList(props) {
 
   const deletePost = post => {
     const accessToken = getAccessTokenApi();
-    
+
     confirm({
       title: "Eliminando post",
       content: `¿Estas segurod de eliminar el post ${post.title}?`,
@@ -52,9 +53,11 @@ export default function PostsList(props) {
 }
 
 function Post(props) {
-  const { post, deletePost, editPost} = props;
+  const { post, deletePost, editPost } = props;
+  const date = moment(post.date).format("DD MMMM YYYY");
 
   return (
+
     <List.Item
       actions={[
         <Link to={`/blog/${post.url}`} target="_blank">
@@ -70,7 +73,14 @@ function Post(props) {
         </Button>
       ]}
     >
-      <List.Item.Meta title={post.title} className=""/>
+      <div className="info">
+        <div className="date">
+          {date}
+        </div>
+        <span className="title">{post.title}</span>
+      </div>
+
     </List.Item>
+
   )
 }

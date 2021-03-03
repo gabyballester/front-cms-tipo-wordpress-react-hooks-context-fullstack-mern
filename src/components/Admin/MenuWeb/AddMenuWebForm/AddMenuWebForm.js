@@ -8,16 +8,14 @@ import "./AddMenuWebForm.scss";
 
 export default function AddMenuWebForm(props) {
   const { setIsVisibleModal, setReloadMenuWeb } = props;
-  const [menuWebData, setMenuWebData] = useState({
-    // http: "http://"
-  });
+  const [menuWebData, setMenuWebData] = useState({});
 
   const addMenu = event => {
     event.preventDefault();
 
     let finalData = {
       title: menuWebData.title,
-      url: (menuWebData.http ? menuWebData.http : "http://") + menuWebData.url
+      url: (menuWebData.http ? menuWebData.http : "/") + menuWebData.url
     }
 
     if (!finalData.title || !finalData.url || !menuWebData.url) {
@@ -63,16 +61,19 @@ function AddForm(props) {
   const { Option } = Select;
   const inputRef = useRef(null);
 
+  console.log(menuWebData);
+
   useEffect(() => {
     inputRef.current.focus();
   }, [inputRef])
 
   const selectBefore = (
     <Select
-      defaultValue="http://"
+      defaultValue="/"
       style={{ width: 90 }}
       onChange={e => setMenuWebData({ ...menuWebData, http: e })}
     >
+      <Option value="/">/</Option>
       <Option value="http://">http://</Option>
       <Option value="https://">https://</Option>
     </Select>
