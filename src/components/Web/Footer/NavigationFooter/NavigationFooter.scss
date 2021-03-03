@@ -7,7 +7,7 @@
   .ant-row {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
 
     h3 {
       color: $font-light;

@@ -73,3 +73,15 @@ export async function updatePostApi(token, id, data) {
     return err;
   }
 }
+
+export async function getPostApi(urlPost) {
+  const url = `${basePath}/${apiVersion}/get-post/${urlPost}`;
+
+  try {
+    const response = await fetch(url);
+    const result = await response.json();
+    return result;
+  } catch (err) {
+    return err;
+  }
+}
