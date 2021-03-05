@@ -11,7 +11,7 @@ export default function MainBanner() {
         <Col lg={4} />
         <Col lg={16}>
           <h2>
-            Montando un CMS <br /> con React y Node <br /> al estilo wordpress
+            Montando un CMS con React y Node al estilo wordpress
         </h2>
           <h3>
             Aprendiendo a desarrollar en Stack MERN{" "}

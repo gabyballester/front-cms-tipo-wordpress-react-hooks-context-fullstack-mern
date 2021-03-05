@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { Spin, List, notification } from "antd";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet"
 import moment from "moment";
 import queryString from "query-string";
 import Pagination from "../../../Pagination";
@@ -53,16 +54,23 @@ function Post(props) {
   const month = moment(post.date).format("MMMM");
 
   return (
-    <List.Item className="post">
-      <div className="post__date">
-        <span>{day}</span>
-        <span>{month}</span>
-      </div>
-      
-      <Link className="link" to={`blog/${post.url}`}>
-      {post.title}
-      </Link>
-      
-    </List.Item>
+    <Fragment>
+      <Helmet>
+        <title> Blog de programación| Web stack MERN | Gabriel Ballester</title>
+      </Helmet>
+      <List.Item className="post">
+        <div className="post__date">
+          <span>{day}</span>
+          <span>{month}</span>
+        </div>
+
+        <Link className="link" to={`blog/${post.url}`}>
+          {post.title}
+        </Link>
+
+      </List.Item>
+
+    </Fragment>
+
   );
 }
