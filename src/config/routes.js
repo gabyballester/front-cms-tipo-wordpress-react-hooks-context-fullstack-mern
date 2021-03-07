@@ -26,7 +26,8 @@ const routes = [
       {
         path: "/admin",
         exact: true,
-        component: AdminHome
+        // component: AdminHome
+        component: AdminUsers
       },
       {
         path: "/admin/login",

@@ -20,9 +20,6 @@ export default function Home() {
       <HomeCourses />
       <HowMyCoursesWork />
       <ReviewsCourses />
-  <ReviewsCourses />
-  <ReviewsCourses />
-  <ReviewsCourses />
     </Fragment>
   );
 }

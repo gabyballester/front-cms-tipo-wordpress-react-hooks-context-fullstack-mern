@@ -165,8 +165,8 @@ function UserActive(props) {
 
             <div className="userInfo">
                 <p className="title">
-                    {user.name ? user.name : "Colocar el nombre"}{" "}
-                    {user.lastname ? user.lastname : "Colocar el apellido"}
+                    {user.name ? user.name : ""}{" "}
+                    {user.lastname ? user.lastname : ""}
                 </p>
                 <p className="description">{user.email}</p>
             </div>
@@ -253,8 +253,8 @@ function UserInactive(props) {
 
             <div className="userInfo">
                 <p className="title">
-                    {user.name ? user.name : "Colocar el nombre"}{" "}
-                    {user.lastname ? user.lastname : "Colocar el apellido"}
+                    {user.name ? user.name : ""}{" "}
+                    {user.lastname ? user.lastname : ""}
                 </p>
                 <p className="description">{user.email}</p>
             </div>
