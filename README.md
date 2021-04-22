@@ -17,7 +17,7 @@ En el archivo  `src/api/config.js` podemos elegir entre:
 - Api de Udemy
 - Backend de Node que alimenta el resto de datos
 #### 5. Video demo del proyecto
-[![Proyecto CMS](screenshots/shot1.jpg)](https://www.youtube.com/watch?v=StTqXEQ2l-Y "Proyecto CMS")
+[![Proyecto CMS](screenshots/shot1.jpg)](https://youtu.be/ZzGPTRsC9TY)
 #### 6. Capturas del proyecto
 ![Capturas de pantalla 1 del Ecommerce Panel](screenshots/shot2.jpg)
 ![Capturas de pantalla 1 del Ecommerce Panel](screenshots/shot3.jpg)
