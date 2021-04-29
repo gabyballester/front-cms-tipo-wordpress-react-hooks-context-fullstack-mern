@@ -1,4 +1,4 @@
-### Proyecto CMS similar a Wordpress, creado con React + Node (stack MERN)
+### Proyecto CMS similar a Wordpress, creado con React + Node (Fullstack MERN)
 
 - Este repositorio es sólo el frontend de este proyecto.
 - El repo del backend lo encontrarás aquí:  
